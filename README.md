@@ -1,9 +1,8 @@
-# Pokedex
+# React + Vite
 
-This project is a web application designed to allow users to search for and visualize data and images of Pokémon. It combines [React](https://es.react.dev/reference/react), [Vite](https://vitejs.dev/), and [Bootstrap](https://react-bootstrap.netlify.app/) to create an engaging Pokémon experience. 🌟🔍🎮
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-# Features:
+Currently, two official plugins are available:
 
-- Locate Pokémon by name, ID, region (Kanto, Johto, etc.), or type (Fire, Water, etc.).
-- Explore vital statistics like HP, Attack, Defense, Special Attack, Special Defense, and Speed for each Pokémon.
-- Enjoy a user-friendly interface built with HTML, CSS, and Bootstrap for a visually appealing and responsive experience.
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
