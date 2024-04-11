@@ -111,19 +111,10 @@
 
 }
 
-/* .types img:hover {
-    transform: scale(1.2);
-}
-
-.tarjeta:hover {
-    transform: scale(1.1);
-} */
 
 
 
-
-
-/* .grass {
+ .grass {
     background: var(--grass);
     box-shadow: 0 0 20px var(--grass);
 }
@@ -211,4 +202,4 @@
 .fire {
     background: var(--fire);
     box-shadow: 0 0 20px var(--fire);
-} */
+} 

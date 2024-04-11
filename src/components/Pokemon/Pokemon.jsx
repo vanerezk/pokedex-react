@@ -17,10 +17,10 @@ function Pokemon(params) {
     const response = params.poke.url;
     axios.get(response).then(async (response) => {
       const respuesta = response.data;
-      if (respuesta.sprites.other.dream_world.front_default != null) {
-        setImagen(respuesta.sprites.other.dream_world.front_default);
-      } else {
+      if (respuesta.sprites.other["official-artwork"].front_default != null) {
         setImagen(respuesta.sprites.other["official-artwork"].front_default);
+      } else {
+        setImagen(respuesta.sprites.other.dream_world.front_default);
       }
       setPokemon(respuesta);
     });

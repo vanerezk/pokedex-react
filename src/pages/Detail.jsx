@@ -1,17 +1,9 @@
 import { useState, useEffect } from "react";
 import { colorTypeGradients } from "../utils/utils";
-import { useParams, Link } from "react-router-dom";
-import {
-  Row,
-  Col,
-  Badge,
-  Card,
-  Progress,
-  CardText,
-  CardBody,
-} from "reactstrap";
+import { useParams } from "react-router-dom";
+import { Row, Col, Badge, Progress, CardText } from "reactstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Pokemon from "../components/Pokemon/Pokemon";
+import Evolutions from "../components/Evolutions/Evolutions";
 import "./Detail.css";
 
 import axios from "axios";
@@ -23,8 +15,8 @@ const Detail = () => {
   const [species, setSpecies] = useState([]);
   const [abilities, setAbilities] = useState([]);
   const [stats, setStats] = useState([]);
-  const [evolutions, setEvolutions] = useState([]);
-  const [listEvolutions, setListEvolutions] = useState([]);
+  const [evoluciones, setEvoluciones] = useState([]);
+  const [listaEvoluciones, setListaEvoluciones] = useState([]);
   const [description, setDescription] = useState([]);
   const [image, setImage] = useState("");
 
@@ -37,10 +29,10 @@ const Detail = () => {
     axios.get(response).then(async (response) => {
       const respuesta = response.data;
       setPokemon(respuesta);
-      if (respuesta.sprites.other.dream_world.front_default != null) {
-        setImage(respuesta.sprites.other.dream_world.front_default);
-      } else {
+      if (respuesta.sprites.other["official-artwork"].front_default != null) {
         setImage(respuesta.sprites.other["official-artwork"].front_default);
+      } else {
+        setImage(respuesta.sprites.other.dream_world.front_default);
       }
       await getSpecies(respuesta.species.name);
       await getStats(respuesta.stats);
@@ -82,7 +74,7 @@ const Detail = () => {
         await getHabitat(respuesta.habitat.url);
       }
       await getDescription(respuesta.flavor_text_entries);
-      await getEvolutions(respuesta.evolution_chain.url);
+      await getEvoluciones(respuesta.evolution_chain.url);
     });
   };
 
@@ -92,28 +84,29 @@ const Detail = () => {
     });
   };
 
-  const getEvolutions = async (ev) => {
+  const getEvoluciones = async (ev) => {
     axios.get(ev).then(async (response) => {
       const respuesta = response.data;
-      let lista = respuesta.chain.species.url.replace("-species", "");
-      lista += processEvolutions(respuesta.chain);
-      setEvolutions(lista);
-      let apoyo = lista.split("");
+      let lista = respuesta.chain.species.url.replace("-species", " ");
+      lista += procesaEvoluciones(respuesta.chain);
+      setEvoluciones(lista);
+      let apoyo = lista.split(" ");
       let list = [];
       apoyo.forEach((ap) => {
         if (ap != "") {
           list.push({ url: ap });
         }
       });
-      setListEvolutions(list);
+      setListaEvoluciones(list);
+      console.log(respuesta.chain);
     });
   };
 
-  const processEvolutions = async (info) => {
-    let res = "";
-    if (info.evolves_to.lenght > 0) {
+  const procesaEvoluciones = (info) => {
+    let res = " ";
+    if (info.evolves_to.length > 0) {
       res += info.evolves_to[0].species.url.replace("-species", "");
-      return res + "" + processEvolutions(info.evolves_to[0]);
+      return res + " " + procesaEvoluciones(info.evolves_to[0]);
     } else {
       return res;
     }
@@ -257,18 +250,19 @@ const Detail = () => {
               </Col>
             </Row>
           ))}
-          <Col md="12 mt-3">
-            <CardText className="fs-4 text-center">
-              <b>Evolutions:</b>
-            </CardText>
-          </Col>
-          {listEvolutions.map((pok, i) => (
-            <Pokemon
-              key={i}
-              name={pok.name}
-              id={pok.id}
-            />
-          ))}
+          <Row>
+            <Col>
+              <CardText className="fs-4 text-center">
+                <b>Evolution chain:</b>
+              </CardText>
+              {listaEvoluciones.map((pok, i) => (
+                <Evolutions
+                  key={i}
+                  poke={pok}
+                />
+              ))}
+            </Col>
+          </Row>
         </div>
       </div>
     </>

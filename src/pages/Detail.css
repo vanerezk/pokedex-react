@@ -1,11 +1,11 @@
 .cardPokemon{
     position: absolute;
-    top: 50%;
+    top: 60%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 100%;
     max-width: 1500px;
-    height: 600px;
+    height: 770px;
     display: flex;
     box-shadow: 0 1px 20px 0 rgba(69, 90, 100, .08);
     border: 1px solid rgba(0, 0, 0, 0.08);
@@ -18,8 +18,6 @@
     border-bottom-left-radius: 5px;
     text-align: center;
     padding-top: 50px;
-    
-
 }
 
 .leftImg {
