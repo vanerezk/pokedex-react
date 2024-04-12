@@ -1,21 +1,21 @@
-import { useState, useEffect } from "react";
-import axios from "axios";
-import Pokemon from "../components/Pokemon/Pokemon";
-import { Container, InputGroup } from "react-bootstrap";
-import { getRegions, getTypes } from "../utils/services";
+import {useState, useEffect} from 'react';
+import axios from 'axios';
+import Pokemon from '../components/Pokemon/Pokemon';
+import {Container, InputGroup} from 'react-bootstrap';
+import {getRegions, getTypes} from '../utils/services';
 
-import "./Home.css";
+import './Home.css';
 
 function Home() {
   const [pokemones, setPokemones] = useState([]);
   const [allPokemones, setAllPokemones] = useState([]);
   const [listado, setListado] = useState([]);
-  const [filtros, setFiltros] = useState("");
+  const [filtros, setFiltros] = useState('');
   const [offset, setOffset] = useState(0);
   const [limit, setLimit] = useState(150);
-  const [region, setRegion] = useState("All");
+  const [region, setRegion] = useState('All');
   const [regions, setRegions] = useState([]);
-  const [type, setType] = useState("All");
+  const [type, setType] = useState('All');
   const [types, setTypes] = useState([]);
 
   useEffect(() => {
@@ -24,12 +24,8 @@ function Home() {
   }, []);
 
   useEffect(() => {
-    getRegions().then((data) => {
-      setRegions(data.results);
-    });
-    getTypes().then((data) => {
-      setTypes(data.results);
-    });
+    getRegions();
+    getTypes();
   }, []);
 
   const getPokemones = async (o) => {
@@ -51,18 +47,34 @@ function Home() {
 
   const buscar = async (e) => {
     if (e.keyCode === 13) {
-      if (filtros.trim() != "") {
+      if (filtros.trim() != '') {
         setListado([]);
         setTimeout(() => {
           setListado(allPokemones.filter((p) => p.name.includes(filtros)));
         }, 1000);
-      } else if (filtros.trim() == "") {
+      } else if (filtros.trim() == '') {
         setListado([]);
         setTimeout(() => {
           setListado(pokemones);
         }, 1000);
       }
     }
+  };
+
+  const getRegions = async () => {
+    const response = `https://pokeapi.co/api/v2/region`;
+    axios.get(response).then(async (response) => {
+      const respuesta = response.data;
+      setRegions(respuesta.results);
+    });
+  };
+
+  const getTypes = async () => {
+    const response = `https://pokeapi.co/api/v2/type`;
+    axios.get(response).then(async (response) => {
+      const respuesta = response.data;
+      setTypes(respuesta.results);
+    });
   };
 
   const handleRegion = (e) => {
@@ -72,21 +84,21 @@ function Home() {
   const handleType = (e) => {
     setType(e.target.value);
   };
-
   return (
     <>
       <Container>
-        <InputGroup className="buscadorPokemon">
+        <InputGroup className='buscadorPokemon'>
           <input
             value={filtros}
             onChange={(e) => setFiltros(e.target.value)}
-            placeholder="Search by name"
+            placeholder='Search by name'
             onKeyDown={buscar}
           />
+
           <select
             value={region}
             onChange={handleRegion}>
-            <option value="All">Search by region</option>
+            <option value='All'>Search by region</option>
             {regions.map((region) => (
               <option
                 key={region.id}
@@ -96,10 +108,10 @@ function Home() {
             ))}
           </select>
 
-          <select
+          {/* <select
             value={type}
             onChange={handleType}>
-            <option value="All">Search by type</option>
+            <option value='All'>Search by type</option>
             {types.map((type) => (
               <option
                 key={type.id}
@@ -107,10 +119,10 @@ function Home() {
                 {type.name}
               </option>
             ))}
-          </select>
+          </select> */}
         </InputGroup>
       </Container>
-      <div className="pokemonList">
+      <div className='pokemonList'>
         {listado.map((pok, i) => (
           <Pokemon
             key={i}

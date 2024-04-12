@@ -1,36 +1,35 @@
-import { useState, useEffect } from "react";
-import { colorTypeGradients } from "../utils/utils";
-import { useParams } from "react-router-dom";
-import { Row, Col, Badge, Progress, CardText } from "reactstrap";
-import "bootstrap/dist/css/bootstrap.min.css";
-import Evolutions from "../components/Evolutions/Evolutions";
-import "./Detail.css";
+import {useState, useEffect} from 'react';
+import {colorTypeGradients} from '../utils/utils';
+import {useParams} from 'react-router-dom';
+import {Row, Col, Badge, Progress, CardText} from 'reactstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Evolutions from '../components/Evolutions/Evolutions';
+import './Detail.css';
 
-import axios from "axios";
+import axios from 'axios';
 const Detail = () => {
-  const { id } = useParams();
+  const {id} = useParams();
 
   const [pokemon, setPokemon] = useState([]);
-  const [habitat, setHabitat] = useState("Unknown");
+  const [habitat, setHabitat] = useState('Unknown');
   const [species, setSpecies] = useState([]);
   const [abilities, setAbilities] = useState([]);
   const [stats, setStats] = useState([]);
   const [evoluciones, setEvoluciones] = useState([]);
   const [listaEvoluciones, setListaEvoluciones] = useState([]);
   const [description, setDescription] = useState([]);
-  const [image, setImage] = useState("");
+  const [image, setImage] = useState('');
 
   useEffect(() => {
     getPokemon();
   }, [id]);
-  console.log(pokemon);
   const getPokemon = async () => {
-    const response = "https://pokeapi.co/api/v2/pokemon/" + id;
+    const response = 'https://pokeapi.co/api/v2/pokemon/' + id;
     axios.get(response).then(async (response) => {
       const respuesta = response.data;
       setPokemon(respuesta);
-      if (respuesta.sprites.other["official-artwork"].front_default != null) {
-        setImage(respuesta.sprites.other["official-artwork"].front_default);
+      if (respuesta.sprites.other['official-artwork'].front_default != null) {
+        setImage(respuesta.sprites.other['official-artwork'].front_default);
       } else {
         setImage(respuesta.sprites.other.dream_world.front_default);
       }
@@ -46,7 +45,7 @@ const Detail = () => {
       if (i == abi.length - 1) {
         listAbilities.push(abi[i].ability.name);
       } else {
-        listAbilities.push(abi[i].ability.name + ", ");
+        listAbilities.push(abi[i].ability.name + ', ');
       }
     }
     setAbilities(listAbilities);
@@ -66,7 +65,7 @@ const Detail = () => {
   };
 
   const getSpecies = async (spe) => {
-    const response = "https://pokeapi.co/api/v2/pokemon-species/" + spe;
+    const response = 'https://pokeapi.co/api/v2/pokemon-species/' + spe;
     axios.get(response).then(async (response) => {
       const respuesta = response.data;
       setSpecies(respuesta);
@@ -87,66 +86,62 @@ const Detail = () => {
   const getEvoluciones = async (ev) => {
     axios.get(ev).then(async (response) => {
       const respuesta = response.data;
-      let lista = respuesta.chain.species.url.replace("-species", " ");
+      let lista = respuesta.chain.species.url.replace('-species', '');
       lista += procesaEvoluciones(respuesta.chain);
       setEvoluciones(lista);
-      let apoyo = lista.split(" ");
+      let apoyo = lista.split(' ');
       let list = [];
       apoyo.forEach((ap) => {
-        if (ap != "") {
-          list.push({ url: ap });
+        if (ap !== '') {
+          list.push({url: ap});
         }
       });
       setListaEvoluciones(list);
-      console.log(respuesta.chain);
     });
   };
-
   const procesaEvoluciones = (info) => {
-    let res = " ";
+    let res = ' ';
     if (info.evolves_to.length > 0) {
-      res += info.evolves_to[0].species.url.replace("-species", "");
-      return res + " " + procesaEvoluciones(info.evolves_to[0]);
+      res += info.evolves_to[0].species.url.replace('-species', '');
+      return res + ' ' + procesaEvoluciones(info.evolves_to[0]);
     } else {
       return res;
     }
   };
 
   const getDescription = async (desc) => {
-    let text = "";
-    if (desc[0].language.name === "en") {
+    let text = '';
+    if (desc[0].language.name === 'en') {
       text = desc[0].flavor_text;
     }
-    if (text == "" && desc.lenght > 0) {
+    if (text == '' && desc.lenght > 0) {
       text = desc[1].flavor_text;
     }
     setDescription(text);
   };
 
   const typePhotoMap = {
-    normal: "normal.png",
-    fire: "fire.png",
-    water: "water.png",
-    electric: "electric.png",
-    grass: "grass.png",
-    ice: "ice.png",
-    fighting: "fighting.png",
-    poison: "poison.png",
-    ground: "ground.png",
-    flying: "flying.png",
-    psychic: "psychic.png",
-    bug: "bug.png",
-    rock: "rock.png",
-    ghost: "ghost.png",
-    dragon: "dragon.png",
-    dark: "dark.png",
-    steel: "steel.png",
-    fairy: "fairy.png",
+    normal: 'normal.png',
+    fire: 'fire.png',
+    water: 'water.png',
+    electric: 'electric.png',
+    grass: 'grass.png',
+    ice: 'ice.png',
+    fighting: 'fighting.png',
+    poison: 'poison.png',
+    ground: 'ground.png',
+    flying: 'flying.png',
+    psychic: 'psychic.png',
+    bug: 'bug.png',
+    rock: 'rock.png',
+    ghost: 'ghost.png',
+    dragon: 'dragon.png',
+    dark: 'dark.png',
+    steel: 'steel.png',
+    fairy: 'fairy.png',
   };
 
-  const typePhotos = pokemon.types
-    ? pokemon.types.map((type) => typePhotoMap[type.type.name])
-    : [];
+  const typePhotos = pokemon.types ? pokemon.types.map((type) => typePhotoMap[type.type.name]) : [];
 
   if (!pokemon.types) {
     return null;
@@ -154,25 +149,25 @@ const Detail = () => {
 
   return (
     <>
-      <div className="cardPokemon">
+      <div className='cardPokemon'>
         <div
-          className="left"
+          className='left'
           style={{
             background: `linear-gradient(to right, ${colorTypeGradients(
               pokemon.types[0].type.name,
-              pokemon.types[1] ? pokemon.types[1].type.name : "",
+              pokemon.types[1] ? pokemon.types[1].type.name : '',
               2
-            ).join(", ")})`,
+            ).join(', ')})`,
           }}>
           <img
             src={image}
             alt={pokemon.name}
             title={pokemon.name}
-            className="leftImg"
+            className='leftImg'
           />
           <Col>
             {pokemon.types && (
-              <CardText className="pokemonTypes">
+              <div className='pokemonTypes'>
                 <ul>
                   {pokemon.types.map((type, index) => (
                     <li key={index}>
@@ -183,7 +178,7 @@ const Detail = () => {
                         style={{
                           backgroundColor: colorTypeGradients(
                             type.type.name,
-                            pokemon.types[1] ? pokemon.types[1].type.name : "",
+                            pokemon.types[1] ? pokemon.types[1].type.name : '',
                             1
                           )[0],
                         }}
@@ -191,59 +186,59 @@ const Detail = () => {
                     </li>
                   ))}
                 </ul>
-              </CardText>
+              </div>
             )}
-            <CardText className="alturaPokemon">
+            <CardText className='alturaPokemon'>
               Height: <b>{pokemon.height / 10} m.</b>
             </CardText>
-            <CardText className="pesoPokemon">
+            <CardText className='pesoPokemon'>
               Weight: <b>{pokemon.weight / 10} kg.</b>
             </CardText>
           </Col>
         </div>
-        <div className="right">
-          <CardText className="tituloPokemon text-center mt-3">
+        <div className='right'>
+          <CardText className='tituloPokemon text-center mt-3'>
             #{pokemon.id} - {pokemon.name}
           </CardText>
           <hr />
           <Col>
-            <CardText className="descripcionPokemon">{description}</CardText>
-            <CardText className="pokemonHabitat">
+            <CardText className='descripcionPokemon'>{description}</CardText>
+            <CardText className='pokemonHabitat'>
               Habitat: <b>{habitat}</b>
             </CardText>
             <CardText>
-              Abilities:{" "}
+              Abilities:{' '}
               {abilities.map((abi, i) => (
                 <Badge
                   key={i}
-                  className="m-1">
-                  {" "}
-                  {abi}{" "}
+                  className='m-1'>
+                  {' '}
+                  {abi}{' '}
                 </Badge>
               ))}
             </CardText>
           </Col>
-          <Col md="12 mt-3">
-            <CardText className="fs-4 text-center">
+          <Col md='12 mt-3'>
+            <CardText className='fs-4 text-center'>
               <b>Stats:</b>
             </CardText>
           </Col>
           {stats.map((stat, i) => (
             <Row
               key={i}
-              className="align-items-center pokemonStats">
+              className='align-items-center pokemonStats'>
               <Col
-                md="3"
-                xs="6">
+                md='3'
+                xs='6'>
                 <b>{stat.name}</b>
               </Col>
               <Col
-                md="9"
-                xs="6">
+                md='9'
+                xs='6'>
                 <Progress
-                  className="my-2"
-                  color="secondary"
-                  max="100"
+                  className='my-2'
+                  color='secondary'
+                  max='100'
                   value={stat.value}>
                   {stat.value}
                 </Progress>
@@ -252,7 +247,7 @@ const Detail = () => {
           ))}
           <Row>
             <Col>
-              <CardText className="fs-4 text-center">
+              <CardText className='fs-4 text-center'>
                 <b>Evolution chain:</b>
               </CardText>
               {listaEvoluciones.map((pok, i) => (
