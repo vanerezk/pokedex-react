@@ -57,3 +57,31 @@
     font-size: 10px;
 }
 
+@media only screen and (max-width: 1000px) {
+    .cardPokemon {
+        flex-direction: column;
+        height: auto;
+        margin-top: 450px;
+    }
+
+    .left,
+    .right {
+        width: 100%;
+        border-radius: 0;
+    }
+
+    .leftImg {
+        width: 50%;
+        height: auto;
+    }
+
+    .descripcionPokemon {
+        font-size: 14px;
+    }
+
+    .alturaPokemon, 
+    .pesoPokemon {
+        padding-bottom: 15px;
+
+    };
+}

@@ -2,7 +2,6 @@ import {useState, useEffect} from 'react';
 import axios from 'axios';
 import Pokemon from '../components/Pokemon/Pokemon';
 import {Container, InputGroup} from 'react-bootstrap';
-import {getRegions, getTypes} from '../utils/services';
 
 import './Home.css';
 
@@ -108,7 +107,7 @@ function Home() {
             ))}
           </select>
 
-          {/* <select
+          <select
             value={type}
             onChange={handleType}>
             <option value='All'>Search by type</option>
@@ -119,7 +118,7 @@ function Home() {
                 {type.name}
               </option>
             ))}
-          </select> */}
+          </select>
         </InputGroup>
       </Container>
       <div className='pokemonList'>

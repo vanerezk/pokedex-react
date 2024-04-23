@@ -4,7 +4,7 @@ import './Evolutions.css';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
 
-function Pokemon(params) {
+function Evolutions(params) {
   const [pokemon, setPokemon] = useState([]);
   const [imagen, setImagen] = useState('');
 
@@ -14,8 +14,7 @@ function Pokemon(params) {
 
   const getPokemon = async () => {
     const response = params.poke.url;
-    console.log(response);
-    console.log(params);
+
     axios.get(response).then(async (response) => {
       const respuesta = response.data;
       if (
@@ -29,10 +28,6 @@ function Pokemon(params) {
       setPokemon(respuesta);
     });
   };
-
-  if (!pokemon.types) {
-    return null;
-  }
 
   return (
     <>
@@ -49,4 +44,4 @@ function Pokemon(params) {
   );
 }
 
-export default Pokemon;
+export default Evolutions;

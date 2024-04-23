@@ -1,6 +1,6 @@
 import {useState, useEffect} from 'react';
 import {colorTypeGradients} from '../utils/utils';
-import {useParams} from 'react-router-dom';
+import {useParams, Link, useNavigate} from 'react-router-dom';
 import {Row, Col, Badge, Progress, CardText} from 'reactstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Evolutions from '../components/Evolutions/Evolutions';
@@ -9,7 +9,6 @@ import './Detail.css';
 import axios from 'axios';
 const Detail = () => {
   const {id} = useParams();
-
   const [pokemon, setPokemon] = useState([]);
   const [habitat, setHabitat] = useState('Unknown');
   const [species, setSpecies] = useState([]);
@@ -23,6 +22,7 @@ const Detail = () => {
   useEffect(() => {
     getPokemon();
   }, [id]);
+
   const getPokemon = async () => {
     const response = 'https://pokeapi.co/api/v2/pokemon/' + id;
     axios.get(response).then(async (response) => {
@@ -69,6 +69,7 @@ const Detail = () => {
     axios.get(response).then(async (response) => {
       const respuesta = response.data;
       setSpecies(respuesta);
+
       if (respuesta.habitat != null) {
         await getHabitat(respuesta.habitat.url);
       }
@@ -89,6 +90,7 @@ const Detail = () => {
       let lista = respuesta.chain.species.url.replace('-species', '');
       lista += procesaEvoluciones(respuesta.chain);
       setEvoluciones(lista);
+
       let apoyo = lista.split(' ');
       let list = [];
       apoyo.forEach((ap) => {
@@ -99,14 +101,14 @@ const Detail = () => {
       setListaEvoluciones(list);
     });
   };
+
   const procesaEvoluciones = (info) => {
     let res = ' ';
     if (info.evolves_to.length > 0) {
       res += info.evolves_to[0].species.url.replace('-species', '');
-      return res + ' ' + procesaEvoluciones(info.evolves_to[0]);
-    } else {
-      return res;
+      res += ' ' + procesaEvoluciones(info.evolves_to[0]);
     }
+    return res;
   };
 
   const getDescription = async (desc) => {
@@ -188,6 +190,7 @@ const Detail = () => {
                 </ul>
               </div>
             )}
+
             <CardText className='alturaPokemon'>
               Height: <b>{pokemon.height / 10} m.</b>
             </CardText>
