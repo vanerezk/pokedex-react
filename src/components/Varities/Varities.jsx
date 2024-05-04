@@ -1,10 +1,9 @@
-import {useState, useEffect} from 'react';
+import {useState, useEffect, Children} from 'react';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
 
 function Varities(params) {
   const [pokemon, setPokemon] = useState([]);
-  const [img, setImg] = useState('');
 
   useEffect(() => {
     getPokemon();
@@ -14,7 +13,7 @@ function Varities(params) {
     const response = params.poke.url;
     axios.get(response).then(async (response) => {
       const respuesta = response.data;
-      setImg(respuesta.sprites.other['official-artwork'].front_default);
+
       setPokemon(respuesta);
     });
   };
@@ -22,12 +21,7 @@ function Varities(params) {
   return (
     <>
       <Link to={`/pokemon/${pokemon.name}`}>
-        <div className='varitiesCard'>
-          <img
-            src={img}
-            alt='pokemon'
-          />
-        </div>
+        <p>hola{pokemon.name}</p>
       </Link>
     </>
   );

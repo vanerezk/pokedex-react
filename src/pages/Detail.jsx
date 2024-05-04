@@ -1,6 +1,6 @@
 import {useState, useEffect} from 'react';
 import {colorTypeGradients} from '../utils/utils';
-import {useParams, Link, useNavigate} from 'react-router-dom';
+import {useParams} from 'react-router-dom';
 import {Row, Col, Badge, Progress, CardText} from 'reactstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Evolutions from '../components/Evolutions/Evolutions';
@@ -18,6 +18,7 @@ const Detail = () => {
   const [listaEvoluciones, setListaEvoluciones] = useState([]);
   const [description, setDescription] = useState([]);
   const [image, setImage] = useState('');
+  const [varieties, setVarieties] = useState([]);
 
   useEffect(() => {
     getPokemon();
@@ -69,10 +70,16 @@ const Detail = () => {
     axios.get(response).then(async (response) => {
       const respuesta = response.data;
       setSpecies(respuesta);
+      console.log(respuesta);
 
       if (respuesta.habitat != null) {
         await getHabitat(respuesta.habitat.url);
       }
+
+      if (respuesta.varieties != null) {
+        setVarieties(respuesta.varieties);
+      }
+
       await getDescription(respuesta.flavor_text_entries);
       await getEvoluciones(respuesta.evolution_chain.url);
     });
@@ -197,6 +204,15 @@ const Detail = () => {
             <CardText className='pesoPokemon'>
               Weight: <b>{pokemon.weight / 10} kg.</b>
             </CardText>
+            <select>
+              {varieties.map((variety, index) => (
+                <option
+                  key={index}
+                  value={variety.pokemon.url}>
+                  {variety.pokemon.name}
+                </option>
+              ))}
+            </select>
           </Col>
         </div>
         <div className='right'>
