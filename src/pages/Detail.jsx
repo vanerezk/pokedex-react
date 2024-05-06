@@ -99,6 +99,7 @@ const Detail = () => {
       const respuesta = response.data;
       let lista = respuesta.chain.species.url.replace('-species', '');
       lista += procesaEvoluciones(respuesta.chain);
+      console.log(respuesta.chain);
       setEvoluciones(lista);
 
       let apoyo = lista.split(' ');
@@ -114,10 +115,12 @@ const Detail = () => {
 
   const procesaEvoluciones = (info) => {
     let res = ' ';
-    if (info.evolves_to.length > 0) {
-      res += info.evolves_to[0].species.url.replace('-species', '');
-      res += ' ' + procesaEvoluciones(info.evolves_to[0]);
-    }
+    info.evolves_to.forEach((evo) => {
+      res += evo.species.url.replace('-species', '') + ' ';
+      if (evo.evolves_to.length > 0) {
+        res += procesaEvoluciones(evo);
+      }
+    });
     return res;
   };
 
