@@ -1,7 +1,7 @@
 .evolutionCard {
     border-radius: 50%;
-    width: 150px;
-    height: 150px;
+    width: 140px;
+        height: 140px;
     margin: 10px;
     margin-left:70px;
     display: inline-block;
@@ -12,8 +12,8 @@
 }
 
 .evolutionImg {
-    width: 150px;
-    height: 150px;
+    width: 140px;
+        height: 140px;
     padding: 15px;
     border-radius: 5px;
 }

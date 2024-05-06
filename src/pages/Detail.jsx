@@ -7,7 +7,7 @@ import Evolutions from '../components/Evolutions/Evolutions';
 import './Detail.css';
 import SelectPokemon from '../components/Varities/Varities';
 import CloseButton from 'react-bootstrap/CloseButton';
-
+import {IoMdVolumeHigh} from 'react-icons/io';
 import axios from 'axios';
 const Detail = () => {
   const {id} = useParams();
@@ -21,11 +21,27 @@ const Detail = () => {
   const [listaEvoluciones, setListaEvoluciones] = useState([]);
   const [description, setDescription] = useState([]);
   const [image, setImage] = useState('');
+  const [isPlayingCries, setIsPlayingCries] = useState(false);
   const [varieties, setVarieties] = useState([]);
+  const [volume, setVolume] = useState(0.05);
 
   useEffect(() => {
     getPokemon();
   }, [id]);
+
+  const playCries = () => {
+    const audio = new Audio(pokemon.cries.latest);
+    audio.volume = volume;
+    audio.play();
+    setIsPlayingCries(true);
+  };
+
+  const playCriesLegacy = () => {
+    const audio = new Audio(pokemon.cries.legacy);
+    audio.volume = volume;
+    audio.play();
+    setIsPlayingCries(true);
+  };
 
   const getPokemon = async () => {
     const response = 'https://pokeapi.co/api/v2/pokemon/' + id;
@@ -162,6 +178,8 @@ const Detail = () => {
     return null;
   }
 
+  console.log(pokemon);
+
   return (
     <>
       <div className='cardPokemon'>
@@ -239,6 +257,28 @@ const Detail = () => {
                   {abi}{' '}
                 </Badge>
               ))}
+            </CardText>
+            <CardText>
+              <b>Cries:</b>
+
+              <IoMdVolumeHigh
+                onClick={playCries}
+                className='playCries'
+                title='Play Cries'
+                size={30}
+                color='black'
+                style={{cursor: 'pointer', marginLeft: '14px', marginTop: '-3px'}}
+              />
+              {pokemon.cries.legacy && (
+                <IoMdVolumeHigh
+                  onClick={playCriesLegacy}
+                  className='playCries'
+                  title='Play Cries'
+                  size={30}
+                  color='black'
+                  style={{cursor: 'pointer', marginLeft: '14px', marginTop: '-3px'}}
+                />
+              )}
             </CardText>
           </Col>
           <Col md='12 mt-3'>
