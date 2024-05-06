@@ -287,7 +287,7 @@ const Detail = () => {
                 <b>Varieties:</b>
               </CardText>
               {varieties.length === 1 ? (
-                <CardText className='text-center'>This pokemon has no varieties</CardText>
+                <CardText className=' fs-6 text-center'>This pokemon has no varieties</CardText>
               ) : (
                 varieties.slice(1).map((variety, i) => (
                   <SelectPokemon

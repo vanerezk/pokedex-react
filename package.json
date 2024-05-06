@@ -2,12 +2,15 @@
   "name": "pokedex",
   "private": true,
   "version": "0.0.0",
+  "homepage": "https://vanerezk.github.io/pokedex-react",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "dependencies": {
     "@emotion/react": "^11.11.4",
