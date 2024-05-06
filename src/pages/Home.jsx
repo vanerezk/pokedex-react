@@ -98,7 +98,8 @@ function Home() {
 
           <select
             value={region}
-            onChange={handleRegion}>
+            onChange={handleRegion}
+            disabled>
             <option value='All'>Search by region</option>
             {regions.map((region) => (
               <option
@@ -111,7 +112,8 @@ function Home() {
 
           <select
             value={type}
-            onChange={handleType}>
+            onChange={handleType}
+            disabled>
             <option value='All'>Search by type</option>
             {types.map((type) => (
               <option

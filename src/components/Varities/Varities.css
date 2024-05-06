@@ -1,4 +1,4 @@
-.evolutionCard {
+.varitiesCard {
     border-radius: 50%;
     width: 150px;
     height: 150px;
@@ -11,10 +11,18 @@
     background-color: rgb(255, 255, 255);
 }
 
-.evolutionImg {
+.varitiesImg {
     width: 150px;
     height: 150px;
-    padding: 30px;
+    padding: 15px;
     border-radius: 5px;
+}
 
+@media screen and (max-width: 720px) {
+
+    .varitiesCard {
+        margin-left: 20px;
+        margin-bottom: 100px;
+
+    }
 }
