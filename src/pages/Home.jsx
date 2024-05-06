@@ -2,6 +2,7 @@ import {useState, useEffect} from 'react';
 import axios from 'axios';
 import Pokemon from '../components/Pokemon/Pokemon';
 import {Container, InputGroup} from 'react-bootstrap';
+import Header from '../components/Header/Header';
 
 import './Home.css';
 
@@ -85,6 +86,7 @@ function Home() {
   };
   return (
     <>
+      <Header />
       <Container>
         <InputGroup className='buscadorPokemon'>
           <input

@@ -1,14 +1,17 @@
 import {useState, useEffect} from 'react';
 import {colorTypeGradients} from '../utils/utils';
-import {useParams} from 'react-router-dom';
+import {useParams, useNavigate} from 'react-router-dom';
 import {Row, Col, Badge, Progress, CardText} from 'reactstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Evolutions from '../components/Evolutions/Evolutions';
 import './Detail.css';
+import SelectPokemon from '../components/Varities/Varities';
+import CloseButton from 'react-bootstrap/CloseButton';
 
 import axios from 'axios';
 const Detail = () => {
   const {id} = useParams();
+  const navigate = useNavigate();
   const [pokemon, setPokemon] = useState([]);
   const [habitat, setHabitat] = useState('Unknown');
   const [species, setSpecies] = useState([]);
@@ -204,21 +207,19 @@ const Detail = () => {
             <CardText className='pesoPokemon'>
               Weight: <b>{pokemon.weight / 10} kg.</b>
             </CardText>
-            <select>
-              {varieties.map((variety, index) => (
-                <option
-                  key={index}
-                  value={variety.pokemon.url}>
-                  {variety.pokemon.name}
-                </option>
-              ))}
-            </select>
           </Col>
         </div>
         <div className='right'>
+          <CloseButton
+            onClick={() => navigate('/')}
+            className='mt-3'
+            aria-label='Close'
+            style={{float: 'right'}}
+          />
           <CardText className='tituloPokemon text-center mt-3'>
             #{pokemon.id} - {pokemon.name}
           </CardText>
+
           <hr />
           <Col>
             <CardText className='descripcionPokemon'>{description}</CardText>
@@ -275,6 +276,24 @@ const Detail = () => {
                   poke={pok}
                 />
               ))}
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+              <CardText className='fs-4 text-center'>
+                <b>Varieties:</b>
+              </CardText>
+              {varieties.length === 1 ? (
+                <CardText className='text-center'>This pokemon has no varieties</CardText>
+              ) : (
+                varieties.slice(1).map((variety, i) => (
+                  <SelectPokemon
+                    key={i}
+                    pokemonUrl={variety.pokemon.url}
+                    pokemonName={variety.pokemon.name}
+                  />
+                ))
+              )}
             </Col>
           </Row>
         </div>
