@@ -24,6 +24,7 @@ const Detail = () => {
   const [isPlayingCries, setIsPlayingCries] = useState(false);
   const [varieties, setVarieties] = useState([]);
   const [volume, setVolume] = useState(0.05);
+  const [showShiny, setShowShiny] = useState(false);
 
   useEffect(() => {
     getPokemon();
@@ -193,10 +194,14 @@ const Detail = () => {
             ).join(', ')})`,
           }}>
           <img
-            src={image}
+            src={
+              showShiny
+                ? pokemon.sprites.other['official-artwork'].front_shiny
+                : pokemon.sprites.other['official-artwork'].front_default
+            }
             alt={pokemon.name}
-            title={pokemon.name}
-            className='leftImg'
+            className='pokemon-img'
+            onClick={() => setShowShiny(!showShiny)}
           />
           <Col>
             {pokemon.types && (
@@ -280,6 +285,12 @@ const Detail = () => {
                 />
               )}
             </CardText>
+            <CardText>
+              Does it have shiny version?: {pokemon.sprites.front_shiny ? 'Yes' : 'No'} (Click the
+              photo to see it)
+            </CardText>
+
+            <hr />
           </Col>
           <Col md='12 mt-3'>
             <CardText className='fs-4 text-center'>

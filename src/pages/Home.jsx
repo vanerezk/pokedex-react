@@ -17,6 +17,7 @@ function Home() {
   const [regions, setRegions] = useState([]);
   const [type, setType] = useState('All');
   const [types, setTypes] = useState([]);
+  const [isNotFound, setIsNotFound] = useState(false);
 
   useEffect(() => {
     getPokemones(offset);
@@ -50,12 +51,15 @@ function Home() {
       if (filtros.trim() != '') {
         setListado([]);
         setTimeout(() => {
-          setListado(allPokemones.filter((p) => p.name.includes(filtros)));
+          const filteredPokemons = allPokemones.filter((p) => p.name.includes(filtros));
+          setListado(filteredPokemons);
+          setIsNotFound(filteredPokemons.length === 0); // set isNotFound here
         }, 1000);
       } else if (filtros.trim() == '') {
         setListado([]);
         setTimeout(() => {
           setListado(pokemones);
+          setIsNotFound(false); // reset isNotFound here
         }, 1000);
       }
     }
@@ -133,6 +137,11 @@ function Home() {
           />
         ))}
       </div>
+      {isNotFound && (
+        <p className='notFound text-center mt-5 mb-5 '>
+          Your search did not match any pokemon, please try again with another name!
+        </p>
+      )}
     </>
   );
 }
