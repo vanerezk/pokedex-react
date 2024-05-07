@@ -6,7 +6,9 @@ function Header() {
   return (
     <>
       <div className='header'>
-        <Link to='/'>
+        <Link
+          to='/'
+          reloadDocument>
           <div className='pokelogo'>
             <img
               src={Pokedex}

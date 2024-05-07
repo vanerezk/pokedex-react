@@ -32,7 +32,7 @@ function SelectPokemon(params) {
     <>
       <>
         <Link to={`/pokemon/${pokemon.name}`}>
-          <div className='varitiesCard'>
+          <div className='varitiesCard mb-5'>
             <img
               src={imagen}
               className='varitiesImg'

@@ -202,8 +202,6 @@ const Detail = () => {
     return null;
   }
 
-  console.log(pokemon);
-
   return (
     <>
       <div className='cardPokemon'>
@@ -223,7 +221,7 @@ const Detail = () => {
                 : pokemon.sprites.other['official-artwork'].front_default
             }
             alt={pokemon.name}
-            className='pokemon-img'
+            className='leftImg'
             onClick={() => setShowShiny(!showShiny)}
           />
           <Col>
@@ -261,7 +259,7 @@ const Detail = () => {
         <div className='right'>
           <CloseButton
             onClick={() => navigate('/')}
-            className='mt-3'
+            className='mt-3 closeButton'
             aria-label='Close'
             style={{float: 'right'}}
           />
@@ -316,7 +314,7 @@ const Detail = () => {
             <hr />
           </Col>
           <Col md='12 mt-3'>
-            <CardText className='fs-4 text-center'>
+            <CardText className='fs-6 text-center'>
               <b>Stats:</b>
             </CardText>
           </Col>
