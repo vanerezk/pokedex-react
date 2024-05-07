@@ -4,6 +4,24 @@ import './Pokemon.css';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
 import {Card, CardImg, Badge, Button, CardText} from 'reactstrap';
+import normal from '../public/assets/images/normal.png';
+import fire from '../public/assets/images/fire.png';
+import water from '../public/assets/images/water.png';
+import electric from '../public/assets/images/electric.png';
+import grass from '../public/assets/images/grass.png';
+import ice from '../public/assets/images/ice.png';
+import fighting from '../public/assets/images/fighting.png';
+import poison from '../public/assets/images/poison.png';
+import ground from '../public/assets/images/ground.png';
+import flying from '../public/assets/images/flying.png';
+import psychic from '../public/assets/images/psychic.png';
+import bug from '../public/assets/images/bug.png';
+import rock from '../public/assets/images/rock.png';
+import ghost from '../public/assets/images/ghost.png';
+import dragon from '../public/assets/images/dragon.png';
+import dark from '../public/assets/images/dark.png';
+import steel from '../public/assets/images/steel.png';
+import fairy from '../public/assets/images/fairy.png';
 
 function Pokemon(params) {
   const [pokemon, setPokemon] = useState([]);
@@ -27,28 +45,31 @@ function Pokemon(params) {
   };
 
   const typePhotoMap = {
-    normal: 'normal.png',
-    fire: 'fire.png',
-    water: 'water.png',
-    electric: 'electric.png',
-    grass: 'grass.png',
-    ice: 'ice.png',
-    fighting: 'fighting.png',
-    poison: 'poison.png',
-    ground: 'ground.png',
-    flying: 'flying.png',
-    psychic: 'psychic.png',
-    bug: 'bug.png',
-    rock: 'rock.png',
-    ghost: 'ghost.png',
-    dragon: 'dragon.png',
-    dark: 'dark.png',
-    steel: 'steel.png',
-    fairy: 'fairy.png',
+    normal: {normal},
+    fire: {fire},
+    water: {water},
+    electric: {electric},
+    grass: {grass},
+    ice: {ice},
+    fighting: {fighting},
+    poison: {poison},
+    ground: {ground},
+    flying: {flying},
+    psychic: {psychic},
+    bug: {bug},
+    rock: {rock},
+    ghost: {ghost},
+    dragon: {dragon},
+    dark: {dark},
+    steel: {steel},
+    fairy: {fairy},
   };
 
-  const typePhotos = pokemon.types ? pokemon.types.map((type) => typePhotoMap[type.type.name]) : [];
-
+  const typePhotos = pokemon.types
+    ? pokemon.types.map(
+        (type) => typePhotoMap[type.type.name][Object.keys(typePhotoMap[type.type.name])[0]]
+      )
+    : [];
   if (!pokemon.types) {
     return null;
   }
@@ -78,7 +99,7 @@ function Pokemon(params) {
               {pokemon.types.map((type, index) => (
                 <li key={index}>
                   <img
-                    src={`../src/public/assets/images/${typePhotos[index]}`}
+                    src={typePhotos[index]}
                     alt={type.type.name}
                     title={type.type.name}
                     style={{
