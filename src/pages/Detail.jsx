@@ -212,7 +212,7 @@ const Detail = () => {
                     <li key={index}>
                       <img
                         src={`
-                        dist/src/public/assets/images/${typePhotos[index]}`}
+                        src/public/assets/images/${typePhotos[index]}`}
                         alt={type.type.name}
                         title={type.type.name}
                         style={{
