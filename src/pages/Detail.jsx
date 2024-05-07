@@ -154,24 +154,24 @@ const Detail = () => {
   };
 
   const typePhotoMap = {
-    normal: 'normal.png',
-    fire: 'fire.png',
-    water: 'water.png',
-    electric: 'electric.png',
-    grass: 'grass.png',
-    ice: 'ice.png',
-    fighting: 'fighting.png',
-    poison: 'poison.png',
-    ground: 'ground.png',
-    flying: 'flying.png',
-    psychic: 'psychic.png',
-    bug: 'bug.png',
-    rock: 'rock.png',
-    ghost: 'ghost.png',
-    dragon: 'dragon.png',
-    dark: 'dark.png',
-    steel: 'steel.png',
-    fairy: 'fairy.png',
+    normal: '../public/assets/images/normal.png',
+    fire: '../public/assets/images/fire.png',
+    water: '../public/assets/images/water.png',
+    electric: '../public/assets/images/electric.png',
+    grass: '../public/assets/images/grass.png',
+    ice: '../public/assets/images/ice.png',
+    fighting: '../public/assets/images/fighting.png',
+    poison: '../public/assets/images/poison.png',
+    ground: '../public/assets/images/ground.png',
+    flying: '../public/assets/images/flying.png',
+    psychic: '../public/assets/images/psychic.png',
+    bug: '../public/assets/images/bug.png',
+    rock: '../public/assets/images/rock.png',
+    ghost: '../public/assets/images/ghost.png',
+    dragon: '../public/assets/images/dragon.png',
+    dark: '../public/assets/images/dark.png',
+    steel: '../public/assets/images/steel.png',
+    fairy: '../public/assets/images/fairy.png',
   };
 
   const typePhotos = pokemon.types ? pokemon.types.map((type) => typePhotoMap[type.type.name]) : [];
@@ -211,8 +211,7 @@ const Detail = () => {
                   {pokemon.types.map((type, index) => (
                     <li key={index}>
                       <img
-                        src={`
-                        src/public/assets/images/${typePhotos[index]}`}
+                        src={`public/assets/images/${typePhotos[index]}`}
                         alt={type.type.name}
                         title={type.type.name}
                         style={{
