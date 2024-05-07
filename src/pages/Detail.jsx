@@ -9,7 +9,6 @@ import SelectPokemon from '../components/Varities/Varities';
 import CloseButton from 'react-bootstrap/CloseButton';
 import {IoMdVolumeHigh} from 'react-icons/io';
 import axios from 'axios';
-import typePhotoMap from '../public/assets/images/images';
 
 const Detail = () => {
   const {id} = useParams();
@@ -212,7 +211,7 @@ const Detail = () => {
                   {pokemon.types.map((type, index) => (
                     <li key={index}>
                       <img
-                        src={`../public/assets/images/${typePhotos[index]}`}
+                        src={`../../public/assets/images/${typePhotos[index]}`}
                         alt={type.type.name}
                         title={type.type.name}
                         style={{

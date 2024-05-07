@@ -79,7 +79,6 @@ function Pokemon(params) {
                 <li key={index}>
                   <img
                     src={`../../public/assets/images/${typePhotos[index]}`}
-                    g
                     alt={type.type.name}
                     title={type.type.name}
                     style={{
