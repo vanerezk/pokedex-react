@@ -1,4 +1,4 @@
-import Pokedex from '../../assets/pokedex.png';
+import Pokedex from '../../public/assets/pokedex.png';
 import './Header.css';
 import {Link} from 'react-router-dom';
 

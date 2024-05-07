@@ -14,5 +14,5 @@
 
 @font-face {
     font-family: "pokemon";
-    src: url("../src/assets/fonts/BarcadeBrawl.ttf") format("truetype"); 
+    src: url("../src/public/assets/fonts/BarcadeBrawl.ttf") format("truetype"); 
 }
