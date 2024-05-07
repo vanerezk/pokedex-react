@@ -53,13 +53,13 @@ function Home() {
         setTimeout(() => {
           const filteredPokemons = allPokemones.filter((p) => p.name.includes(filtros));
           setListado(filteredPokemons);
-          setIsNotFound(filteredPokemons.length === 0); // set isNotFound here
+          setIsNotFound(filteredPokemons.length === 0);
         }, 1000);
       } else if (filtros.trim() == '') {
         setListado([]);
         setTimeout(() => {
           setListado(pokemones);
-          setIsNotFound(false); // reset isNotFound here
+          setIsNotFound(false);
         }, 1000);
       }
     }

@@ -9,6 +9,7 @@ import SelectPokemon from '../components/Varities/Varities';
 import CloseButton from 'react-bootstrap/CloseButton';
 import {IoMdVolumeHigh} from 'react-icons/io';
 import axios from 'axios';
+import normal from '../public/assets/images/normal.png';
 const Detail = () => {
   const {id} = useParams();
   const navigate = useNavigate();
@@ -209,6 +210,10 @@ const Detail = () => {
                 <ul>
                   {pokemon.types.map((type, index) => (
                     <li key={index}>
+                      <img
+                        src={normal}
+                        alt=''
+                      />
                       <img
                         src={`../public/assets/images/${typePhotos[index]}`}
                         alt={type.type.name}
