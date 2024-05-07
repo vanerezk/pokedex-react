@@ -9,7 +9,8 @@ import SelectPokemon from '../components/Varities/Varities';
 import CloseButton from 'react-bootstrap/CloseButton';
 import {IoMdVolumeHigh} from 'react-icons/io';
 import axios from 'axios';
-import normal from '../public/assets/images/normal.png';
+import typePhotoMap from '../public/assets/images/images';
+
 const Detail = () => {
   const {id} = useParams();
   const navigate = useNavigate();
@@ -153,26 +154,26 @@ const Detail = () => {
     setDescription(text);
   };
 
-  const typePhotoMap = {
-    normal: 'normal.png',
-    fire: 'fire.png',
-    water: 'water.png',
-    electric: 'electric.png',
-    grass: 'grass.png',
-    ice: 'ice.png',
-    fighting: 'fighting.png',
-    poison: 'poison.png',
-    ground: 'ground.png',
-    flying: 'flying.png',
-    psychic: 'psychic.png',
-    bug: 'bug.png',
-    rock: 'rock.png',
-    ghost: 'ghost.png',
-    dragon: 'dragon.png',
-    dark: 'dark.png',
-    steel: 'steel.png',
-    fairy: 'fairy.png',
-  };
+  // const typePhotoMap = {
+  //   normal: 'normal.png',
+  //   fire: 'fire.png',
+  //   water: 'water.png',
+  //   electric: 'electric.png',
+  //   grass: 'grass.png',
+  //   ice: 'ice.png',
+  //   fighting: 'fighting.png',
+  //   poison: 'poison.png',
+  //   ground: 'ground.png',
+  //   flying: 'flying.png',
+  //   psychic: 'psychic.png',
+  //   bug: 'bug.png',
+  //   rock: 'rock.png',
+  //   ghost: 'ghost.png',
+  //   dragon: 'dragon.png',
+  //   dark: 'dark.png',
+  //   steel: 'steel.png',
+  //   fairy: 'fairy.png',
+  // };
 
   const typePhotos = pokemon.types ? pokemon.types.map((type) => typePhotoMap[type.type.name]) : [];
 
@@ -210,10 +211,6 @@ const Detail = () => {
                 <ul>
                   {pokemon.types.map((type, index) => (
                     <li key={index}>
-                      <img
-                        src={normal}
-                        alt=''
-                      />
                       <img
                         src={`../public/assets/images/${typePhotos[index]}`}
                         alt={type.type.name}
