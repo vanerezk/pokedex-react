@@ -171,7 +171,7 @@ const Detail = () => {
     dragon: 'public/assets/images/dragon.png',
     dark: 'public/assets/images/dark.png',
     steel: 'public/assets/images/steel.png',
-    fairy: 'public/assets/images/fairy.png',
+    fairy: '../public/assets/images/fairy.png',
   };
 
   const typePhotos = pokemon.types ? pokemon.types.map((type) => typePhotoMap[type.type.name]) : [];
