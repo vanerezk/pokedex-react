@@ -7,10 +7,5 @@ export default defineConfig({
   build: {
     outDir: 'dist',
     assetsDir: './src/public/assets/images/',
-    rollupOptions: {
-      input: {
-        main: './src/main.jsx',
-      },
-    },
   },
 });
