@@ -78,7 +78,7 @@ function Pokemon(params) {
               {pokemon.types.map((type, index) => (
                 <li key={index}>
                   <img
-                    src={`../src/public/assets/images/${typePhotos[index]}`}
+                    src={`../../public/assets/images/${typePhotos[index]}`}
                     g
                     alt={type.type.name}
                     title={type.type.name}
