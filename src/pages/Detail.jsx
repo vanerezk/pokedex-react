@@ -211,7 +211,8 @@ const Detail = () => {
                   {pokemon.types.map((type, index) => (
                     <li key={index}>
                       <img
-                        src={`../../public/assets/images/${typePhotos[index]}`}
+                        src={`
+                        /assets/images/${typePhotos[index]}`}
                         alt={type.type.name}
                         title={type.type.name}
                         style={{
