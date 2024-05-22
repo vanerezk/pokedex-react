@@ -104,7 +104,7 @@ function Home() {
             value={region}
             onChange={handleRegion}
             disabled>
-            <option value='All'>Search by region</option>
+            <option value='All'>COMING SOON...</option>
             {regions.map((region) => (
               <option
                 key={region.id}
@@ -118,7 +118,7 @@ function Home() {
             value={type}
             onChange={handleType}
             disabled>
-            <option value='All'>Search by type</option>
+            <option value='All'>COMING SOON...</option>
             {types.map((type) => (
               <option
                 key={type.id}
