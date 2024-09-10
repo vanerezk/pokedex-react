@@ -7,3 +7,8 @@ This project is a web application designed to allow users to search for and visu
 - Locate Pokémon by name, ID, region (Kanto, Johto, etc.), or type (Fire, Water, etc.).
 - Explore vital statistics like HP, Attack, Defense, Special Attack, Special Defense, and Speed for each Pokémon.
 - Enjoy a user-friendly interface built with HTML, CSS, and Bootstrap for a visually appealing and responsive experience.
+
+## Deploy
+
+https://pokedex-react-rezk.netlify.app/
+
