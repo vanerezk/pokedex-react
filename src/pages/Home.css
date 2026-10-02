@@ -1,34 +1,189 @@
-.buscadorPokemon {
+.dexCounter {
     display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    margin-bottom: 20px;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
+    gap: 18px;
+    margin: 0;
+    padding: 6px 14px;
 }
 
-input,
-select {
-    display: flex;
-    width: 400px;
-    height: 30px;
-    border: 1px solid #ebda6a;
-    padding-left: 10px;
-    padding-right: 10px;
+.dexCounter div {
+    display: grid;
+    justify-items: center;
+}
+
+.dexCounter dt {
     font-size: 15px;
-    border-radius: 5px;
-    margin-bottom: 20px;
-    background: #ebda6a;
+    line-height: 1;
+    text-transform: uppercase;
+    opacity: 0.8;
 }
 
+.dexCounter dd {
+    margin: 0;
+    font-size: 30px;
+    line-height: 1;
+}
 
-.pokemonList {
+/* Filtros sobre la carcasa roja */
+.dexFilters {
+    display: grid;
+    grid-template-columns: minmax(200px, 1.4fr) minmax(130px, 0.7fr) minmax(130px, 0.7fr) auto;
+    align-items: end;
+    gap: 12px;
+    padding: 18px 0;
+}
+
+.dexField {
+    display: grid;
+    gap: 4px;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 800;
+    text-shadow: 1px 1px 0 var(--dex-outline);
+}
+
+.dexField input,
+.dexField select {
+    width: 100%;
+    min-height: 42px;
+    padding: 6px 12px;
+    border: 3px solid var(--dex-outline);
+    border-radius: 8px;
+    background: var(--lcd-bg);
+    color: var(--lcd-ink);
+    font-family: 'VT323', monospace;
+    font-size: 21px;
+    text-shadow: none;
+}
+
+.dexField input::placeholder {
+    color: var(--lcd-ink-soft);
+}
+
+.dexField select {
+    cursor: pointer;
+}
+
+.dexField input:focus-visible,
+.dexField select:focus-visible {
+    outline: 3px solid var(--focus);
+    outline-offset: 2px;
+}
+
+.dexFilterButtons {
+    display: flex;
+    gap: 8px;
+}
+
+.dexFilterButtons .dexButton {
+    min-height: 42px;
+    white-space: nowrap;
+}
+
+/* Pantalla de resultados */
+.homeScreen {
+    scroll-margin-top: 12px;
+}
+
+.homeScreenInner {
+    min-height: 360px;
+    padding: 14px;
+    border: 3px solid var(--dex-outline);
+    border-radius: 6px;
+    background-color: #fbfbf8;
+    background-image: radial-gradient(#dcdcd5 1px, transparent 1px);
+    background-size: 6px 6px;
+}
+
+.homeScreenInner > .loader {
+    min-height: 420px;
+    background: none;
+}
+
+.homeStatus {
+    margin: 0 0 12px;
+    color: #4b4b4b;
+    font-family: 'VT323', monospace;
+    font-size: 20px;
+}
+
+.pokemonGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+    gap: 16px;
+}
+
+.homeMessage {
+    display: grid;
+    min-height: 360px;
+    place-content: center;
+    justify-items: center;
+    gap: 14px;
+    color: #3b3b3b;
+    font-family: 'VT323', monospace;
+    font-size: 24px;
+    text-align: center;
+}
+
+.homeMessage p {
+    margin: 0;
+}
+
+/* Paginación con cruceta */
+.dexPager {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
     align-items: center;
-    gap: 20px;
+    justify-content: center;
+    gap: 22px;
+    padding-top: 22px;
 }
-    
 
+.pagerLcd {
+    margin: 0;
+    padding: 8px 16px;
+    font-size: 28px;
+}
+
+.pagerButtons {
+    display: flex;
+    gap: 8px;
+}
+
+@media (max-width: 900px) {
+    .dexFilters {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .dexFieldSearch,
+    .dexFilterButtons {
+        grid-column: 1 / -1;
+    }
+
+    .dexFilterButtons .dexButton {
+        flex: 1;
+    }
+}
+
+@media (max-width: 640px) {
+    .dexCounter {
+        width: 100%;
+        justify-content: space-around;
+    }
+
+    .dexFilterButtons {
+        flex-direction: column;
+    }
+
+    .homeScreenInner {
+        padding: 10px;
+    }
+
+    .pokemonGrid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+    }
+
+    .screenBezel {
+        padding: 10px 8px 8px;
+    }
+}

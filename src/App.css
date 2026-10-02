@@ -1,18 +1,248 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-weight: 200;
-    font-style: normal;
-    font-size: 16px;
-    font-family: 'pokemon';
-
-
+.App {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
 }
 
+.App > footer {
+    margin-top: auto;
+}
 
+/* ---------- Carcasa de la Pokédex (compartida por todas las páginas) ---------- */
 
-@font-face {
-    font-family: "pokemon";
-    src: url("../src/public/assets/fonts/BarcadeBrawl.ttf") format("truetype"); 
+.dex {
+    position: relative;
+    width: min(1180px, calc(100% - 32px));
+    margin: 24px auto;
+    padding: 18px 22px 26px;
+    border: 4px solid var(--dex-outline);
+    border-radius: 18px 18px 28px 28px;
+    background: linear-gradient(180deg, var(--dex-red-light), var(--dex-red) 70px);
+    box-shadow:
+        inset 0 -8px 0 var(--dex-red-dark),
+        0 18px 40px rgba(0, 0, 0, 0.45);
+}
+
+.dexTopBar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding-bottom: 16px;
+    border-bottom: 4px solid var(--dex-outline);
+}
+
+.dexTopBar .dexLights {
+    align-self: center;
+}
+
+.dexBrand {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    color: #fff;
+    text-decoration: none;
+}
+
+.dexBrand:focus-visible {
+    outline: 3px solid var(--focus);
+    outline-offset: 4px;
+    border-radius: 8px;
+}
+
+.dexTitle {
+    margin: 0;
+    color: #fff;
+    font-family: 'pokemon', monospace;
+    font-size: clamp(18px, 3vw, 26px);
+    font-weight: 400;
+    letter-spacing: 2px;
+    text-shadow: 3px 3px 0 var(--dex-outline);
+}
+
+/* Pantalla con marco gris claro */
+.screenBezel {
+    padding: 14px 14px 10px;
+    border: 3px solid var(--dex-outline);
+    border-radius: 8px 8px 8px 34px;
+    background: var(--bezel);
+    box-shadow: inset 0 -4px 0 var(--bezel-dark);
+}
+
+.screenBezelDots {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 8px;
+}
+
+.screenBezelDots span {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--dex-red);
+    box-shadow: 0 0 0 1.5px var(--dex-outline);
+}
+
+.screenBezelFooter {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 10px;
+    padding: 0 6px;
+}
+
+.screenBezelFooter .bezelButton {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--dex-red);
+    box-shadow: 0 0 0 2px var(--dex-outline);
+}
+
+.speakerGrill {
+    display: grid;
+    gap: 4px;
+    width: 42px;
+}
+
+.speakerGrill span {
+    height: 3px;
+    border-radius: 2px;
+    background: var(--dex-outline);
+}
+
+/* Pantalla LCD verde */
+.lcd {
+    border: 3px solid var(--dex-outline);
+    border-radius: 6px;
+    background: var(--lcd-bg);
+    box-shadow: inset 0 0 0 3px rgba(255, 255, 255, 0.25), inset 0 0 30px rgba(24, 58, 29, 0.15);
+    color: var(--lcd-ink);
+    font-family: 'VT323', monospace;
+    font-size: 20px;
+    line-height: 1.25;
+}
+
+.lcdMuted {
+    margin: 0;
+    color: var(--lcd-ink-soft);
+}
+
+.lcdField {
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+}
+
+.lcdField select {
+    min-width: 0;
+    max-width: 100%;
+    min-height: 34px;
+    padding: 2px 8px;
+    border: 2px solid var(--lcd-ink);
+    border-radius: 4px;
+    background: var(--lcd-bg-light);
+    color: var(--lcd-ink);
+    font-family: 'VT323', monospace;
+    font-size: 19px;
+    cursor: pointer;
+}
+
+.lcdField select:focus-visible {
+    outline: 3px solid var(--lcd-ink);
+    outline-offset: 2px;
+}
+
+/* Botones físicos */
+.dexButton {
+    display: inline-flex;
+    min-height: 40px;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 6px 14px;
+    border: 3px solid var(--dex-outline);
+    border-radius: 8px;
+    background: #f2f2ee;
+    box-shadow: inset 0 -4px 0 rgba(0, 0, 0, 0.18);
+    color: #1d1d1d;
+    font-family: 'Nunito', sans-serif;
+    font-size: 14px;
+    font-weight: 800;
+    text-decoration: none;
+    cursor: pointer;
+    transition: transform 80ms ease, filter 120ms ease;
+}
+
+.dexButton:hover:not(:disabled) {
+    filter: brightness(1.06);
+}
+
+.dexButton:active:not(:disabled) {
+    transform: translateY(2px);
+    box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.18);
+}
+
+.dexButton:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.dexButton:focus-visible {
+    outline: 3px solid var(--focus);
+    outline-offset: 2px;
+}
+
+.dexButtonBlue { background: #3d8be0; color: #fff; }
+.dexButtonYellow { background: #ffd23f; }
+.dexButtonDark { background: #2e2e2e; color: #fff; }
+.dexButtonGreen { background: #47c76a; }
+
+.dexButton[aria-pressed='true'] {
+    background: #1d1d1d;
+    color: var(--focus);
+}
+
+.notFoundBody {
+    display: grid;
+    justify-items: center;
+    gap: 14px;
+    padding: 28px 16px;
+    text-align: center;
+}
+
+.notFoundBody h1 {
+    margin: 0;
+    font-size: 28px;
+    font-weight: 400;
+}
+
+.notFoundBody img {
+    width: 78px;
+    height: 92px;
+    image-rendering: pixelated;
+}
+
+@media (max-width: 640px) {
+    .dex {
+        width: calc(100% - 16px);
+        margin: 8px auto 16px;
+        padding: 12px 12px 20px;
+        border-radius: 14px 14px 20px 20px;
+    }
+
+    .dexTopBar .dexLens {
+        width: 48px;
+        height: 48px;
+        border-width: 4px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .dexButton {
+        transition: none;
+    }
 }

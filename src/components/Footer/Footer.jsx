@@ -2,11 +2,18 @@ import './Footer.css';
 
 function Footer() {
   return (
-    <div>
-      <footer>
-        <span>Pokedex © 2024 - Todos los derechos reservados ©</span>
-      </footer>
-    </div>
+    <footer className='siteFooter'>
+      <span>
+        Datos de{' '}
+        <a
+          href='https://pokeapi.co'
+          target='_blank'
+          rel='noreferrer'>
+          PokéAPI
+        </a>{' '}
+        · Pokémon y sus nombres son marcas de Nintendo, Game Freak y The Pokémon Company.
+      </span>
+    </footer>
   );
 }
 

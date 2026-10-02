@@ -1,0 +1,88 @@
+.evoTree {
+    display: flex;
+    justify-content: center;
+}
+
+.evoNode {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.evoCard {
+    display: flex;
+    width: 112px;
+    flex-direction: column;
+    align-items: center;
+    padding: 6px 6px 8px;
+    border: 2px solid var(--lcd-ink-soft);
+    border-radius: 6px;
+    background: var(--lcd-bg-light);
+    color: var(--lcd-ink);
+    text-decoration: none;
+    transition: transform 120ms ease;
+}
+
+.evoCard:hover {
+    transform: translateY(-2px);
+}
+
+.evoCard:focus-visible {
+    outline: 3px solid var(--lcd-ink);
+    outline-offset: 2px;
+}
+
+.evoCard.isCurrent {
+    border-color: var(--lcd-ink);
+    background: var(--lcd-ink);
+    color: var(--lcd-bg);
+}
+
+.evoCard img {
+    width: 72px;
+    height: 72px;
+    object-fit: contain;
+}
+
+.evoNumber {
+    font-size: 15px;
+    line-height: 1;
+    opacity: 0.8;
+}
+
+.evoName {
+    max-width: 100%;
+    overflow: hidden;
+    font-size: 19px;
+    line-height: 1.1;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.evoBranches {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 6px 14px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.evoBranches.isWide {
+    max-width: 520px;
+}
+
+.evoBranch {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.evoMethod {
+    max-width: 150px;
+    padding: 8px 0 6px;
+    font-size: 17px;
+    line-height: 1.05;
+    text-align: center;
+}

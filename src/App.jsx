@@ -1,13 +1,25 @@
+import {useEffect} from 'react';
+import {Route, Routes, useLocation} from 'react-router-dom';
 import Footer from './components/Footer/Footer';
+import NotFound from './components/NotFound';
 import Home from './pages/Home';
 import Detail from './pages/Detail';
-
 import './App.css';
-import {Routes, Route} from 'react-router-dom';
+
+function ScrollToTop() {
+  const {pathname} = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+}
 
 function App() {
   return (
-    <main className='App fondo'>
+    <div className='App'>
+      <ScrollToTop />
       <Routes>
         <Route
           path='/'
@@ -17,9 +29,13 @@ function App() {
           path='/pokemon/:id'
           element={<Detail />}
         />
+        <Route
+          path='*'
+          element={<NotFound />}
+        />
       </Routes>
       <Footer />
-    </main>
+    </div>
   );
 }
 

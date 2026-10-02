@@ -1,0 +1,35 @@
+.matchups {
+    display: grid;
+    gap: 12px;
+}
+
+.matchupRow {
+    display: grid;
+    grid-template-columns: 150px 1fr;
+    align-items: start;
+    gap: 10px;
+}
+
+.matchupLabel {
+    font-size: 20px;
+    line-height: 1.1;
+}
+
+.matchupLabel strong {
+    display: inline-block;
+    min-width: 32px;
+    font-weight: 400;
+}
+
+.matchupTypes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+@media (max-width: 520px) {
+    .matchupRow {
+        grid-template-columns: 1fr;
+        gap: 4px;
+    }
+}

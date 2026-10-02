@@ -1,0 +1,54 @@
+.moveList {
+    display: grid;
+    gap: 12px;
+}
+
+.moveTableWrap {
+    max-height: 360px;
+    overflow: auto;
+    border: 2px solid var(--lcd-ink-soft);
+    border-radius: 4px;
+}
+
+.moveTable {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 19px;
+    line-height: 1.1;
+}
+
+.moveTable thead th {
+    position: sticky;
+    top: 0;
+    padding: 6px 8px;
+    background: var(--lcd-ink);
+    color: var(--lcd-bg);
+    font-weight: 400;
+    text-align: left;
+}
+
+.moveTable td,
+.moveTable tbody th {
+    padding: 5px 8px;
+    border-top: 1px dashed var(--lcd-ink-soft);
+    font-weight: 400;
+    text-align: left;
+    white-space: nowrap;
+}
+
+.moveTable tbody tr:nth-child(even) {
+    background: var(--lcd-bg-light);
+}
+
+.moveLevel,
+.moveNumber {
+    font-variant-numeric: tabular-nums;
+}
+
+.moveTable td.moveNumber {
+    text-align: right;
+}
+
+.moveClass {
+    opacity: 0.85;
+}

@@ -1,0 +1,111 @@
+.pokemonCard {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 10px 12px;
+    border: 3px solid #2b2b2b;
+    border-radius: 10px;
+    background: #f4f4ef;
+    box-shadow: 0 4px 0 #2b2b2b;
+    color: inherit;
+    text-decoration: none;
+    transition: transform 140ms ease, box-shadow 140ms ease;
+}
+
+.pokemonCard:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 7px 0 #2b2b2b;
+}
+
+.pokemonCard:active {
+    transform: translateY(2px);
+    box-shadow: 0 2px 0 #2b2b2b;
+}
+
+.pokemonCard:focus-visible {
+    outline: 4px solid #ffd23f;
+    outline-offset: 3px;
+}
+
+.pokemonCardTop {
+    display: flex;
+    width: 100%;
+    min-height: 20px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.pokemonCardNumber {
+    color: #4b4b4b;
+    font-family: 'VT323', monospace;
+    font-size: 20px;
+    line-height: 1;
+}
+
+.pokemonCardCaught {
+    color: #222;
+}
+
+.pokemonCardSeen {
+    color: #9a9a92;
+}
+
+.pokemonCardScreen {
+    display: grid;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    place-items: center;
+    border: 2px solid #2b2b2b;
+    border-radius: 6px;
+    background:
+        radial-gradient(circle at 50% 60%, color-mix(in srgb, var(--type-color) 45%, #fff) 0 45%, transparent 70%),
+        color-mix(in srgb, var(--type-color) 18%, #fff);
+    transition: background 300ms ease;
+}
+
+.pokemonCardScreen img {
+    width: 82%;
+    height: 82%;
+    object-fit: contain;
+    filter: drop-shadow(0 4px 2px rgba(0, 0, 0, 0.18));
+    transition: transform 160ms ease;
+}
+
+.pokemonCard:hover .pokemonCardScreen img {
+    transform: scale(1.06);
+}
+
+.pokemonCardName {
+    max-width: 100%;
+    overflow: hidden;
+    color: #1d1d1d;
+    font-family: 'Nunito', sans-serif;
+    font-size: 16px;
+    font-weight: 800;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.pokemonCardTypes {
+    display: flex;
+    min-height: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 4px;
+}
+
+.pokemonCardTypesLoading {
+    width: 70px;
+    height: 18px;
+    border-radius: 999px;
+    background: #ddddd5;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .pokemonCard,
+    .pokemonCardScreen img {
+        transition: none;
+    }
+}

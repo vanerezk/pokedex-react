@@ -1,0 +1,118 @@
+.dexLights {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.dexLens {
+    position: relative;
+    width: 64px;
+    height: 64px;
+    flex-shrink: 0;
+    border: 5px solid #fff;
+    border-radius: 50%;
+    background: radial-gradient(circle at 34% 32%, #bfe6ff 0 10%, #39a4f0 24%, #1259a8 74%);
+    box-shadow: 0 0 0 2px #2b0b0b, 0 4px 0 2px rgba(0, 0, 0, 0.25);
+}
+
+.dexLens.isActive {
+    animation: lensTalk 0.45s ease-in-out infinite alternate;
+}
+
+.dexLed {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    box-shadow: 0 0 0 2px #2b0b0b, inset -2px -2px 0 rgba(0, 0, 0, 0.18);
+}
+
+.dexLedRed { background: #ff3b3b; }
+.dexLedYellow { background: #ffd23f; }
+.dexLedGreen { background: #47d16c; }
+
+@keyframes lensTalk {
+    from { box-shadow: 0 0 0 2px #2b0b0b, 0 0 6px 2px rgba(96, 196, 255, 0.4); }
+    to { box-shadow: 0 0 0 2px #2b0b0b, 0 0 24px 10px rgba(96, 196, 255, 0.85); filter: brightness(1.35); }
+}
+
+/* Cruceta */
+.dPad {
+    display: grid;
+    width: 96px;
+    height: 96px;
+    grid-template: repeat(3, 1fr) / repeat(3, 1fr);
+    flex-shrink: 0;
+}
+
+.dPad button,
+.dPadCenter {
+    border: 0;
+    background: #222;
+}
+
+.dPad button {
+    cursor: pointer;
+    transition: background 120ms ease;
+}
+
+.dPad button:hover:not(:disabled) {
+    background: #3a3a3a;
+}
+
+.dPad button:active:not(:disabled) {
+    background: #000;
+    transform: translateY(1px);
+}
+
+.dPad button:disabled {
+    cursor: default;
+}
+
+.dPad button:focus-visible {
+    position: relative;
+    z-index: 1;
+    outline: 3px solid #ffd23f;
+}
+
+.dPadUp { grid-area: 1 / 2; border-radius: 4px 4px 0 0; }
+.dPadLeft { grid-area: 2 / 1; border-radius: 4px 0 0 4px; }
+.dPadCenter { grid-area: 2 / 2; }
+.dPadRight { grid-area: 2 / 3; border-radius: 0 4px 4px 0; }
+.dPadDown { grid-area: 3 / 2; border-radius: 0 0 4px 4px; }
+
+.dPad button::after {
+    display: block;
+    margin: auto;
+    border: 6px solid transparent;
+    content: '';
+    width: 0;
+    height: 0;
+}
+
+.dPad .dPadUp::after { border-bottom-color: #777; transform: translateY(-3px); }
+.dPad .dPadDown::after { border-top-color: #777; transform: translateY(3px); }
+.dPad .dPadLeft::after { border-right-color: #777; transform: translateX(-3px); }
+.dPad .dPadRight::after { border-left-color: #777; transform: translateX(3px); }
+
+.dPadCenter::after {
+    display: block;
+    width: 14px;
+    height: 14px;
+    margin: calc(50% - 7px) auto 0;
+    border-radius: 50%;
+    background: #333;
+    content: '';
+}
+
+.pokeballIcon {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .dexLens.isActive {
+        animation: none;
+        filter: brightness(1.3);
+    }
+}
